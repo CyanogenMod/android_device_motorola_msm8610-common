@@ -111,6 +111,11 @@ PRODUCT_PACKAGES += \
     charge_only_mode \
     libmoto
 
+# Motorola Camera permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/com.motorola.camera.xml:system/etc/permissions/com.motorola.camera.xml \
+    $(LOCAL_PATH)/configs/com.motorola.motosignature.xml:system/etc/permissions/com.motorola.motosignature.xml
+
 # OMX
 PRODUCT_PACKAGES += \
     libdashplayer \
@@ -188,6 +193,8 @@ PRODUCT_PACKAGES += \
 # Doze
 PRODUCT_PACKAGES += \
     MotoDoze
+
+PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
 # Inhert dalvik heap values
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
