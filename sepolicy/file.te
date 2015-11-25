@@ -10,5 +10,8 @@ type vibeamp_sysfs, fs_type, sysfs_type;
 type moto_firmware, file_type;
 type fsg_file, fs_type, contextmount_type;
 
+# Cutback socket (RILD)
+type cutback_data_file, file_type, data_file_type;
+
 # PDS
 type pds_file, file_type;

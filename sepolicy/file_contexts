@@ -31,6 +31,10 @@
 # PDS
 /pds(/.*)?                                                  u:object_r:pds_file:s0
 
+# RIL
+/data/misc/cutback(/.*)?                                    u:object_r:cutback_data_file:s0
+/dev/socket/cutback                                         u:object_r:rild_socket:s0
+
 # Thermal
 /sys/devices/fd510000.gpio/gpio/gpio13/active_low           u:object_r:sysfs_thermal:s0
 /sys/devices/fd510000.gpio/gpio/gpio13/edge                 u:object_r:sysfs_thermal:s0
