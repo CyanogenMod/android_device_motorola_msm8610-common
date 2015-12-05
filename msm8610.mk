@@ -50,6 +50,31 @@ DEVICE_PACKAGE_OVERLAYS := \
 TARGET_SCREEN_HEIGHT := 960
 TARGET_SCREEN_WIDTH := 540
 
+PRODUCT_PACKAGES += \
+    gralloc.msm8610 \
+    copybit.msm8610 \
+    hwcomposer.msm8610 \
+    memtrack.msm8610 \
+    power.msm8610
+
+PRODUCT_PACKAGES += \
+    audio.msm8610 \
+    audio_policy.msm8610
+
+# Keystore
+PRODUCT_PACKAGES += keystore.msm8610
+
+PRODUCT_PACKAGES += \
+    audiod \
+    audio.primary.msm8610 \
+    audio.a2dp.default \
+    audio.usb.default \
+    audio.r_submix.default \
+    libaudio-resampler \
+    tinymix \
+    libqcomvisualizer \
+    libqcomvoiceprocessing
+
 # Motorola
 PRODUCT_PACKAGES += \
     charge_only_mode
