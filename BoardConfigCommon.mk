@@ -21,7 +21,7 @@
 # definition file).
 #
 
-LOCAL_PATH := device/motorola/msm8610-common
+COMMON_PATH := device/motorola/msm8610-common
 
 BOARD_VENDOR := motorola-qcom
 
@@ -109,12 +109,12 @@ BOARD_USES_QC_TIME_SERVICES := true
 TARGET_RIL_VARIANT := caf
 
 # Hardware tunables framework
-BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
+BOARD_HARDWARE_CLASS := $(COMMON_PATH)/cmhw/
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
 BLUETOOTH_HCI_USE_MCT := true
 
 # Build
@@ -135,7 +135,7 @@ TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_UNIFIED_DEVICE := true
 
 # Properties (reset them here, include more in device if needed)
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -143,7 +143,7 @@ HAVE_SELINUX := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 
 MALLOC_IMPL := dlmalloc
 

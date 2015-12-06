@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := device/motorola/msm8610-common
+COMMON_PATH := device/motorola/msm8610-common
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,${LOCAL_PATH}/ramdisk,root)
+    $(call find-copy-subdir-files,*,${COMMON_PATH}/ramdisk,root)
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -48,7 +48,7 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 DEVICE_PACKAGE_OVERLAYS := \
-    $(LOCAL_PATH)/overlay
+    $(COMMON_PATH)/overlay
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 960

@@ -19,6 +19,8 @@
 # to only building on ARM if they include assembly. Individual makefiles
 # are responsible for having their own logic, for fine-grained control.
 
+LOCAL_PATH := $(call my-dir)
+
 ifneq ($(filter condor otus,$(TARGET_DEVICE)),)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
