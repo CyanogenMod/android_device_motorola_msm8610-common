@@ -134,6 +134,9 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_UNIFIED_DEVICE := true
 
+# Properties (reset them here, include more in device if needed)
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 HAVE_SELINUX := true
