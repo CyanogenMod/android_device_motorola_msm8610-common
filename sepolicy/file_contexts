@@ -35,6 +35,9 @@
 # FSG (regional modem config) blobs
 /fsg(/.*)?                                                  u:object_r:moto_firmware:s0
 
+# PDS
+/pds(/.*)?                                                  u:object_r:pds_file:s0
+
 # Thermal
 /sys/devices/fd510000.gpio/gpio/gpio13/active_low           u:object_r:sysfs_thermal:s0
 /sys/devices/fd510000.gpio/gpio/gpio13/edge                 u:object_r:sysfs_thermal:s0
