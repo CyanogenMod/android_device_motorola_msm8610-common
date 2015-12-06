@@ -135,7 +135,6 @@ TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_UNIFIED_DEVICE := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/ramdisk/fstab.qcom
 BOARD_HAS_NO_SELECT_BUTTON := true
 HAVE_SELINUX := true
 
