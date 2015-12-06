@@ -16,6 +16,9 @@ COMMON_PATH := device/motorola/msm8610-common
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
+# common vendor blobs
+$(call inherit-product, vendor/motorola/msm8610-common/msm8610-common-vendor.mk)
+
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,${COMMON_PATH}/ramdisk,root)
