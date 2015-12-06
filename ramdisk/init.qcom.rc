@@ -26,6 +26,7 @@
 #
 
 import init.qcom.usb.rc
+import init.device.rc
 
 on early-init
     # Create firmware mount point
@@ -444,12 +445,6 @@ service location_mq /system/bin/location-mq
     user gps
     group gps
     disabled
-
-service stml0xx /system/bin/stml0xx_wrapper.sh
-    class late_start
-    user compass
-    group compass misc input
-    oneshot
 
 service mmi-boot-sh /system/bin/sh /init.mmi.boot.sh
     class core
