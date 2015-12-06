@@ -54,6 +54,9 @@ DEVICE_PACKAGE_OVERLAYS := \
 TARGET_SCREEN_HEIGHT := 960
 TARGET_SCREEN_WIDTH := 540
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sf.lcd_density=240
+
 PRODUCT_PACKAGES += \
     gralloc.msm8610 \
     copybit.msm8610 \
@@ -64,6 +67,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audio.msm8610 \
     audio_policy.msm8610
+
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8610 \
+    libmm-qcamera \
+    libboringssl-compat \
+    libshim_qcopt
 
 # Keystore
 PRODUCT_PACKAGES += keystore.msm8610
@@ -81,7 +91,8 @@ PRODUCT_PACKAGES += \
 
 # Motorola
 PRODUCT_PACKAGES += \
-    charge_only_mode
+    charge_only_mode \
+    libmoto
 
 # OMX
 PRODUCT_PACKAGES += \
