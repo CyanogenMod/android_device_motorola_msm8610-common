@@ -20,9 +20,18 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, vendor/motorola/msm8610-common/msm8610-common-vendor.mk)
 
 # Ramdisk
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,${COMMON_PATH}/ramdisk,root)
+PRODUCT_PACKAGES += \
+    init.mmi.boot.sh \
+    init.mmi.touch.sh \
+    init.qcom.ril.sh \
+    init.qcom.ssr.sh
 
+PRODUCT_PACKAGES += \
+    init.mmi.usb.rc \
+    init.qcom.rc \
+    init.qcom.usb.rc \
+    ueventd.qcom.rc
+    
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -115,11 +124,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
-
-PRODUCT_PACKAGES += \
-    wlan_module_symlink \
-    wlan_persist_symlink \
-    wcnss_service
 
 PRODUCT_PACKAGES += \
     librs_jni \
