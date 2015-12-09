@@ -159,7 +159,6 @@ PRODUCT_PACKAGES += \
 # Misc
 PRODUCT_PACKAGES += \
     curl \
-    libbson \
     libcurl \
     tcpdump \
     libcnefeatureconfig
