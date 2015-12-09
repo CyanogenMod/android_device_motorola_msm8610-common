@@ -177,8 +177,8 @@ on early-boot
     write /sys/kernel/boot_adsp/boot 1
 
 on boot
-    # mount debugfs for systrace 	 	
-    mount debugfs /sys/kernel/debug /sys/kernel/debug 
+    # mount debugfs for systrace
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
 
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
@@ -214,6 +214,9 @@ on boot
 
     # Prevents permission denied error for telephony
     chmod 0644 /proc/cmdline
+
+    # Create NETMGR daemon socket area
+    mkdir /dev/socket/netmgr 0750 radio radio
 
     setprop wifi.interface wlan0
 
