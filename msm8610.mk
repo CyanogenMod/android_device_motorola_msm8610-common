@@ -31,7 +31,7 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.usb.rc \
     ueventd.qcom.rc
-    
+
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -159,11 +159,10 @@ PRODUCT_PACKAGES += \
 # Misc
 PRODUCT_PACKAGES += \
     curl \
-    libbson \
     libcurl \
     tcpdump \
     libcnefeatureconfig
-	
+
 # Wifi
 PRODUCT_PACKAGES += \
     hostapd_default.conf \
