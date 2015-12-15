@@ -101,6 +101,10 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing
 
+# Media Config
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
+
 # Motorola
 PRODUCT_PACKAGES += \
     charge_only_mode \
