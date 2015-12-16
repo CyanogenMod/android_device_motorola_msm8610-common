@@ -59,7 +59,7 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
-DEVICE_PACKAGE_OVERLAYS := \
+DEVICE_PACKAGE_OVERLAYS += \
     $(COMMON_PATH)/overlay
 
 # Boot animation
