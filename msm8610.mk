@@ -84,6 +84,10 @@ PRODUCT_PACKAGES += \
     libboringssl-compat \
     libshim_qcopt
 
+# IPC router config
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+
 # Keystore
 PRODUCT_PACKAGES += keystore.msm8610
 
@@ -100,7 +104,8 @@ PRODUCT_PACKAGES += \
 
 # Media Config
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Motorola
 PRODUCT_PACKAGES += \
