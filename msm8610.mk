@@ -27,7 +27,6 @@ PRODUCT_PACKAGES += \
     init.qcom.ssr.sh
 
 PRODUCT_PACKAGES += \
-    init.mmi.usb.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
     ueventd.qcom.rc

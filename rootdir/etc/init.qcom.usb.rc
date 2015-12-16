@@ -44,7 +44,6 @@ on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 05C6
     write /sys/class/android_usb/android0/idProduct 9025
-    write /sys/class/diag/diag/logging_mode usb
     write /sys/class/android_usb/android0/f_diag/clients diag
     write /sys/class/android_usb/android0/f_serial/transports smd,tty
     write /sys/class/android_usb/android0/f_rmnet/transports smd,bam
@@ -57,7 +56,6 @@ on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet_bam,mass_storage
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 05C6
     write /sys/class/android_usb/android0/idProduct 9026
-    write /sys/class/diag/diag/logging_mode usb
     write /sys/class/android_usb/android0/f_diag/clients diag
     write /sys/class/android_usb/android0/f_serial/transports smd,tty
     write /sys/class/android_usb/android0/f_rmnet/transports smd,bam
@@ -88,7 +86,7 @@ on property:sys.usb.config=mtp
     write /sys/class/android_usb/android0/bDeviceSubClass 0
     write /sys/class/android_usb/android0/bDeviceProtocol 0
     write /sys/class/android_usb/android0/idVendor 0x22b8
-    write /sys/class/android_usb/android0/idProduct 0x2e82
+    write /sys/class/android_usb/android0/idProduct ${ro.usb.mtp}
     write /sys/class/android_usb/android0/functions mtp
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
@@ -99,7 +97,7 @@ on property:sys.usb.config=mtp,adb
     write /sys/class/android_usb/android0/bDeviceSubClass 0
     write /sys/class/android_usb/android0/bDeviceProtocol 0
     write /sys/class/android_usb/android0/idVendor 0x22b8
-    write /sys/class/android_usb/android0/idProduct 0x2e76
+    write /sys/class/android_usb/android0/idProduct ${ro.usb.mtp_adb}
     write /sys/class/android_usb/android0/functions mtp,adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
@@ -107,7 +105,7 @@ on property:sys.usb.config=mtp,adb
 
 on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet,usbnet,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idProduct 0x2e29
+    write /sys/class/android_usb/android0/idProduct ${ro.usb.bpt_adb}
     write /sys/class/android_usb/android0/idVendor 0x22b8
     write /sys/class/diag/diag/logging_mode usb
     write /sys/class/android_usb/android0/f_diag/clients diag
@@ -120,7 +118,7 @@ on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet,usbnet,adb
 
 on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet,usbnet
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idProduct 0x2e28
+    write /sys/class/android_usb/android0/idProduct ${ro.usb.bpt}
     write /sys/class/android_usb/android0/idVendor 0x22b8
     write /sys/class/diag/diag/logging_mode usb
     write /sys/class/android_usb/android0/f_diag/clients diag
@@ -132,7 +130,7 @@ on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet,usbnet
 
 on property:sys.usb.config=rndis,diag,serial_smd,serial_tty,rmnet,usbnet,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idProduct 0x2e2b
+    write /sys/class/android_usb/android0/idProduct ${ro.usb.bpteth_adb}
     write /sys/class/android_usb/android0/idVendor 0x22b8
     write /sys/class/diag/diag/logging_mode usb
     write /sys/class/android_usb/android0/f_diag/clients diag
@@ -145,7 +143,7 @@ on property:sys.usb.config=rndis,diag,serial_smd,serial_tty,rmnet,usbnet,adb
 
 on property:sys.usb.config=rndis,diag,serial_smd,serial_tty,rmnet,usbnet
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idProduct 0x2e2a
+    write /sys/class/android_usb/android0/idProduct ${ro.usb.bpteth}
     write /sys/class/android_usb/android0/idVendor 0x22b8
     write /sys/class/diag/diag/logging_mode usb
     write /sys/class/android_usb/android0/f_diag/clients diag
@@ -201,7 +199,7 @@ on property:sys.usb.config=ptp
     write /sys/class/android_usb/android0/bDeviceSubClass 0
     write /sys/class/android_usb/android0/bDeviceProtocol 0
     write /sys/class/android_usb/android0/idVendor 0x22b8
-    write /sys/class/android_usb/android0/idProduct 0x2e83
+    write /sys/class/android_usb/android0/idProduct ${ro.usb.ptp}
     write /sys/class/android_usb/android0/functions ptp
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
@@ -212,7 +210,7 @@ on property:sys.usb.config=ptp,adb
     write /sys/class/android_usb/android0/bDeviceSubClass 0
     write /sys/class/android_usb/android0/bDeviceProtocol 0
     write /sys/class/android_usb/android0/idVendor 0x22b8
-    write /sys/class/android_usb/android0/idProduct 0x2e84
+    write /sys/class/android_usb/android0/idProduct ${ro.usb.ptp_adb}
     write /sys/class/android_usb/android0/functions ptp,adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
