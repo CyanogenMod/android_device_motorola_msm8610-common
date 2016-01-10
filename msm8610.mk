@@ -81,7 +81,8 @@ PRODUCT_PACKAGES += \
     camera.msm8610 \
     libmm-qcamera \
     libboringssl-compat \
-    libshim_qcopt
+    libshim_qcopt \
+    Snap
 
 # IPC router config
 PRODUCT_COPY_FILES += \
