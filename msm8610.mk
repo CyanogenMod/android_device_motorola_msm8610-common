@@ -79,7 +79,8 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     libboringssl-compat \
-    libshim_qcopt
+    libshim_qcopt \
+    Snap
 
 # IPC router config
 PRODUCT_COPY_FILES += \
