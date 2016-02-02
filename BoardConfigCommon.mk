@@ -143,6 +143,16 @@ TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
 BOARD_HAS_NO_SELECT_BUTTON := true
 HAVE_SELINUX := true
 
+# Basic dexpreopt
+ifeq ($(HOST_OS),linux)
+  ifneq ($(TARGET_BUILD_VARIANT),eng)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+      WITH_DEXPREOPT_BOOT_IMG_ONLY := true
+    endif
+  endif
+endif
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
