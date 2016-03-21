@@ -168,6 +168,3 @@ ifeq ($(HOST_OS),linux)
     endif
   endif
 endif
-
-# Include an expanded selection of fonts
-EXTENDED_FONT_FOOTPRINT := true
