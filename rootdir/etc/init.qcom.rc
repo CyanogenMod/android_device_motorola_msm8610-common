@@ -56,9 +56,6 @@ on init
     chown root qcom_diag /sys/kernel/dropbox/event
     chown root qcom_diag /sys/kernel/dropbox/data
 
-    # Symbols required for motorola blobs
-    export LD_SHIM_LIBS "/system/lib/liblog.so|libmoto.so /system/lib/libcrypto.so|libboringssl-compat.so /system/vendor/lib/libqc-opt.so|libshim_qcopt.so"
-
 on fs
     mount_all fstab.qcom
     swapon_all fstab.qcom
