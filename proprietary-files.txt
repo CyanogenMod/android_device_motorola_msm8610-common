@@ -30,6 +30,7 @@ lib/libmdmdetect.so
 lib/libmotext_inf.so
 lib/libmotocalibration.so
 lib/libmoto_netutil.so
+lib/libmot_sensorlistener.so
 lib/libOmxVdecHevc.so
 lib/libpkip.so
 lib/libqmimotext.so
