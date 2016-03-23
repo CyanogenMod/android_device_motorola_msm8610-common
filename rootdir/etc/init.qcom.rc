@@ -98,14 +98,6 @@ on post-fs-data
     restorecon /data/hostapd
     restorecon /data/misc/wifi/hostapd/wlan0
 
-    #Create directories for QuIPS
-    mkdir /data/misc/quipc 0770 system gps
-
-    #Create directories for Location services
-    mkdir /data/misc/location 0770 gps gps
-    mkdir /data/misc/location/mq 0770 gps gps
-    mkdir /data/misc/location/xtwifi 0770 gps gps
-
     #Create directory from IMS services
     mkdir /data/shared 0755
     chown system system /data/shared
@@ -440,12 +432,6 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
     user root
     oneshot
 
-service location_mq /system/bin/location-mq
-    class late_start
-    user gps
-    group gps
-    disabled
-
 service mmi-boot-sh /system/bin/sh /init.mmi.boot.sh
     class core
     user root
@@ -631,18 +617,6 @@ service iprenew_eth0 /system/bin/dhcpcd -nBK
     class late_start
     disabled
     oneshot
-
-service xtwifi_client /system/bin/xtwifi-client
-    class late_start
-    user gps
-    group net_admin wifi inet gps
-    disabled
-
-service xtwifi_inet /system/bin/xtwifi-inet-agent
-    class late_start
-    user gps
-    group inet gps
-    disabled
 
 on charger
     write /sys/class/android_usb/android0/enable 0
