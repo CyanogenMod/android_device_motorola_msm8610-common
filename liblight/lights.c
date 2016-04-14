@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 The CyanogenMod Project
+ * Copyright (C) 2014-2016 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,17 +15,11 @@
  */
 
 #include <cutils/log.h>
-#include <cutils/properties.h>
-#include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <pthread.h>
-#include <math.h>
-
-#include <sys/ioctl.h>
-#include <sys/types.h>
 
 #include <hardware/lights.h>
 
@@ -123,7 +117,7 @@ rgb_to_brightness(struct light_state_t const* state)
 }
 
 static int
-set_light_backlight(struct light_device_t* dev,
+set_light_backlight(__attribute__((unused)) struct light_device_t* dev,
         struct light_state_t const* state)
 {
     int err = 0;
@@ -135,7 +129,7 @@ set_light_backlight(struct light_device_t* dev,
 }
 
 static int
-set_speaker_light_locked(struct light_device_t* dev,
+set_speaker_light_locked(__attribute__((unused)) struct light_device_t* dev,
         struct light_state_t const* state)
 {
     int len;
@@ -157,7 +151,8 @@ set_speaker_light_locked(struct light_device_t* dev,
             break;
     }
 
-    colorRGB = state->color;
+    // state->color is an ARGB value, clear the alpha channel
+    colorRGB = (0xFFFFFF & state->color);
 #if 1
     ALOGD("set_speaker_light_locked mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
             state->flashMode, colorRGB, onMS, offMS);
@@ -186,10 +181,16 @@ set_speaker_light_locked(struct light_device_t* dev,
 static void
 handle_speaker_battery_locked(struct light_device_t* dev)
 {
-    if (is_lit(&g_battery)) {
-        set_speaker_light_locked(dev, &g_battery);
-    } else {
+
+    // We want to see the notifications if they are there!!
+    if (is_lit(&g_notification)){
         set_speaker_light_locked(dev, &g_notification);
+    } else if (is_lit(&g_battery)) {
+        // No notification look at the battery state
+        write_str(RGB_CONTROL_FILE, "FFFFFF 1 0 0 0");
+    } else {
+        // Nothing to notify, just turn if off
+        write_str(RGB_CONTROL_FILE, "000000 0 0 0 0");
     }
 }
 
@@ -219,6 +220,19 @@ set_light_attention(struct light_device_t* dev,
     return 0;
 }
 
+static int
+set_light_battery(struct light_device_t* dev,
+        struct light_state_t const* state)
+{
+    ALOGD("Setting battery colorRGB=%08X", state->color);
+    pthread_mutex_lock(&g_lock);
+    g_battery = *state;
+    handle_speaker_battery_locked(dev);
+    pthread_mutex_unlock(&g_lock);
+    return 0;
+}
+
+
 
 /** Close the lights device */
 static int
@@ -246,6 +260,8 @@ static int open_lights(const struct hw_module_t* module, char const* name,
 
     if (0 == strcmp(LIGHT_ID_BACKLIGHT, name))
         set_light = set_light_backlight;
+    else if (0 == strcmp(LIGHT_ID_BATTERY, name))
+        set_light = set_light_battery;
     else if (0 == strcmp(LIGHT_ID_NOTIFICATIONS, name))
         set_light = set_light_notifications;
     else if (0 == strcmp(LIGHT_ID_ATTENTION, name))
@@ -281,6 +297,6 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
     .version_minor = 0,
     .id = LIGHTS_HARDWARE_MODULE_ID,
     .name = "MSM8610 lights Module",
-    .author = "Google, Inc., dhacker29",
+    .author = "Google, Inc., dhacker29, scritch007",
     .methods = &lights_module_methods,
 };
