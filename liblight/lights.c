@@ -130,11 +130,11 @@ static int set_speaker_light_locked(__attribute__((unused)) struct light_device_
             break;
     }
 
-    // state->color is an ARGB value, clear the alpha channel
-    colorRGB = (0xFFFFFF & state->color);
-
     ALOGD("set_speaker_light_locked mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
-            state->flashMode, colorRGB, onMS, offMS);
+            state->flashMode, state->color, onMS, offMS);
+
+    // state->color is an ARGB value, but our LED is just binary white
+    colorRGB = (0xFFFFFF & state->color) ? 0xFFFFFF : 0;
 
     sprintf(blink_pattern, "%6x %d %d %d %d", colorRGB, onMS, offMS, ramp, ramp);
     write_str(RGB_CONTROL_FILE, blink_pattern);
