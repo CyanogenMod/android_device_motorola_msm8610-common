@@ -18,11 +18,6 @@ LOCAL_PATH:= $(call my-dir)
 # hw/<COPYPIX_HARDWARE_MODULE_ID>.<ro.board.platform>.so
 include $(CLEAR_VARS)
 
-
-ifneq ($(filter otus,$(TARGET_DEVICE)),)
-LOCAL_CFLAGS += -DSTML0XX_LED
-endif
-
 LOCAL_SRC_FILES := lights.c
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 LOCAL_SHARED_LIBRARIES := liblog
