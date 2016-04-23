@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "lights"
+
 #include <cutils/log.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,41 +27,24 @@
 
 /******************************************************************************/
 
-#define MAX_PATH_SIZE 80
-#define LOG_TAG "lights"
-
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 static struct light_state_t g_notification;
 static struct light_state_t g_battery;
-static int g_attention = 0;
 
-#ifdef STMLOXX_LED
-char const*const WHITE_LED_FILE
-        = "/sys/class/leds/rgb/brightness";
-#else
-char const*const WHITE_LED_FILE
-        = "/sys/class/leds/white/brightness";
-#endif
-
-char const*const LCD_FILE
+static const char LCD_FILE[]
         = "/sys/class/leds/lcd-backlight/brightness";
 
-char const*const RGB_CONTROL_FILE
+static const char RGB_CONTROL_FILE[]
         = "/sys/class/leds/rgb/control";
 
-/**
- * device methods
- */
-
-void init_globals(void)
+static void init_globals(void)
 {
     // init the mutex
     pthread_mutex_init(&g_lock, NULL);
 }
 
-static int
-write_int(char const* path, int value)
+static int write_int(char const* path, int value)
 {
     int fd;
     static int already_warned = 0;
@@ -80,8 +65,7 @@ write_int(char const* path, int value)
     }
 }
 
-static int
-write_str(char const* path, char *value)
+static int write_str(char const* path, char *value)
 {
     int fd;
     static int already_warned = 0;
@@ -102,22 +86,19 @@ write_str(char const* path, char *value)
     }
 }
 
-static int
-is_lit(struct light_state_t const* state)
+static int is_lit(struct light_state_t const* state)
 {
     return state->color & 0x00ffffff;
 }
 
-static int
-rgb_to_brightness(struct light_state_t const* state)
+static int rgb_to_brightness(struct light_state_t const* state)
 {
     int color = state->color & 0x00ffffff;
     return ((77*((color>>16)&0x00ff))
             + (150*((color>>8)&0x00ff)) + (29*(color&0x00ff))) >> 8;
 }
 
-static int
-set_light_backlight(__attribute__((unused)) struct light_device_t* dev,
+static int set_light_backlight(__attribute__((unused)) struct light_device_t* dev,
         struct light_state_t const* state)
 {
     int err = 0;
@@ -128,60 +109,41 @@ set_light_backlight(__attribute__((unused)) struct light_device_t* dev,
     return err;
 }
 
-static int
-set_speaker_light_locked(__attribute__((unused)) struct light_device_t* dev,
+static int set_speaker_light_locked(__attribute__((unused)) struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    int len;
-    int blink;
     int onMS, offMS, ramp;
     unsigned int colorRGB;
     char blink_pattern[PAGE_SIZE];
-
 
     switch (state->flashMode) {
         case LIGHT_FLASH_TIMED:
             onMS = state->flashOnMS;
             offMS = state->flashOffMS;
+            ramp = 300;
             break;
         case LIGHT_FLASH_NONE:
         default:
             onMS = 0;
             offMS = 0;
+            ramp = 0;
             break;
     }
 
     // state->color is an ARGB value, clear the alpha channel
     colorRGB = (0xFFFFFF & state->color);
-#if 1
+
     ALOGD("set_speaker_light_locked mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
             state->flashMode, colorRGB, onMS, offMS);
-#endif
 
-    if (onMS > 0 && offMS > 0) {
-
-        blink = 1;
-        ramp = 1;
-    } else {
-        blink = 0;
-        ramp = 0;
-    }
-
-    // See hardware/libhardware/include/hardware/lights.h
-    int brightness = ((77 * ((colorRGB >> 16) & 0xFF)) +
-                      (150 * ((colorRGB >> 8) & 0xFF)) +
-                      (29 * (colorRGB & 0xFF))) >> 8;
-
-    sprintf(blink_pattern,"%6x %d %d %d %d",colorRGB,onMS,offMS,ramp,ramp);
+    sprintf(blink_pattern, "%6x %d %d %d %d", colorRGB, onMS, offMS, ramp, ramp);
     write_str(RGB_CONTROL_FILE, blink_pattern);
 
     return 0;
 }
 
-static void
-handle_speaker_battery_locked(struct light_device_t* dev)
+static void handle_speaker_battery_locked(struct light_device_t* dev)
 {
-
     // We want to see the notifications if they are there!!
     if (is_lit(&g_notification)){
         set_speaker_light_locked(dev, &g_notification);
@@ -194,8 +156,7 @@ handle_speaker_battery_locked(struct light_device_t* dev)
     }
 }
 
-static int
-set_light_notifications(struct light_device_t* dev,
+static int set_light_notifications(struct light_device_t* dev,
         struct light_state_t const* state)
 {
     pthread_mutex_lock(&g_lock);
@@ -205,23 +166,7 @@ set_light_notifications(struct light_device_t* dev,
     return 0;
 }
 
-static int
-set_light_attention(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    pthread_mutex_lock(&g_lock);
-    if (state->flashMode == LIGHT_FLASH_HARDWARE) {
-        g_attention = state->flashOnMS;
-    } else if (state->flashMode == LIGHT_FLASH_NONE) {
-        g_attention = 0;
-    }
-    handle_speaker_battery_locked(dev);
-    pthread_mutex_unlock(&g_lock);
-    return 0;
-}
-
-static int
-set_light_battery(struct light_device_t* dev,
+static int set_light_battery(struct light_device_t* dev,
         struct light_state_t const* state)
 {
     ALOGD("Setting battery colorRGB=%08X", state->color);
@@ -235,8 +180,7 @@ set_light_battery(struct light_device_t* dev,
 
 
 /** Close the lights device */
-static int
-close_lights(struct light_device_t *dev)
+static int close_lights(struct light_device_t *dev)
 {
     if (dev) {
         free(dev);
@@ -244,14 +188,9 @@ close_lights(struct light_device_t *dev)
     return 0;
 }
 
-
 /******************************************************************************/
 
-/**
- * module methods
- */
-
-/** Open a new instance of a lights device using name */
+/* Open a new instance of a lights device using name */
 static int open_lights(const struct hw_module_t* module, char const* name,
         struct hw_device_t** device)
 {
@@ -264,8 +203,6 @@ static int open_lights(const struct hw_module_t* module, char const* name,
         set_light = set_light_battery;
     else if (0 == strcmp(LIGHT_ID_NOTIFICATIONS, name))
         set_light = set_light_notifications;
-    else if (0 == strcmp(LIGHT_ID_ATTENTION, name))
-        set_light = set_light_attention;
     else
         return -EINVAL;
 
@@ -297,6 +234,6 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
     .version_minor = 0,
     .id = LIGHTS_HARDWARE_MODULE_ID,
     .name = "MSM8610 lights Module",
-    .author = "Google, Inc., dhacker29, scritch007",
+    .author = "Google, Inc., dhacker29, scritch007, sultanqasim",
     .methods = &lights_module_methods,
 };
