@@ -92,6 +92,10 @@ PRODUCT_PACKAGES += \
     audio.msm8610 \
     audio_policy.msm8610
 
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8610 \
