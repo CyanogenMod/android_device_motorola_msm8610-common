@@ -23,8 +23,7 @@ $(call inherit-product, vendor/motorola/msm8610-common/msm8610-common-vendor.mk)
 PRODUCT_PACKAGES += \
     init.mmi.boot.sh \
     init.mmi.touch.sh \
-    init.qcom.ril.sh \
-    init.qcom.ssr.sh
+    init.qcom.ril.sh
 
 PRODUCT_PACKAGES += \
     init.qcom.rc \

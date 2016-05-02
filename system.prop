@@ -77,10 +77,6 @@ persist.data.qmi.adb_logmask=0
 # Scheduler
 sys.io.scheduler=bfq
 
-# SSR
-persist.sys.ssr.restart_level=3
-persist.sys.qc.sub.rdump.on=1
-
 # Time Services
 persist.timed.enable=true
 
@@ -95,4 +91,5 @@ ro.usb.bpteth=0x2e2a
 ro.usb.bpteth_adb=0x2e2b
 
 # Wifi
+persist.sys.qc.sub.rdump.on=1
 ro.disableWifiApFirmwareReload=true
