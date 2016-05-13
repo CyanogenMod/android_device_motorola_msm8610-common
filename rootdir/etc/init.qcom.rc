@@ -336,8 +336,10 @@ on boot
     chmod 0660 /sys/class/timed_output/vibrator/enable
     chown system system /sys/devices/virtual/timed_output/vibrator/vtg_level
 
-    # display color calibration
+    # Display
     chown system system /sys/devices/virtual/graphics/fb0/kcal
+    chown system graphics /sys/devices/virtual/graphics/fb0/idle_time
+    chmod 0664 /sys/devices/virtual/graphics/fb0/idle_time
 
     # Enable rotator
     chown system system /sys/class/input/event1/device/device/enable
