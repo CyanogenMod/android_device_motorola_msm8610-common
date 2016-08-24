@@ -22,4 +22,7 @@
 #define BLUETOOTH_QCOM_SW TRUE
 #define BLUETOOTH_QCOM_LE_INTL_SCAN TRUE
 #define BTC_INCLUDED TRUE
+
+/* Defined if the kernel does not have support for CLOCK_BOOTTIME_ALARM */
+#define KERNEL_MISSING_CLOCK_BOOTTIME_ALARM TRUE
 #endif
