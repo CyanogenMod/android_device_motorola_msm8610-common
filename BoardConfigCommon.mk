@@ -63,6 +63,9 @@ TARGET_KERNEL_MODULES += WLAN_MODULES
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
+# Camera
+TARGET_NEEDS_TEXT_RELOCATIONS := true
+
 # Charger
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/mmi_lpm/lpm_mode
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
