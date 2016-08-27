@@ -184,7 +184,8 @@ PRODUCT_PACKAGES += \
     curl \
     libcurl \
     tcpdump \
-    libcnefeatureconfig
+    libcnefeatureconfig \
+    libshims_thermal
 
 # Wifi
 PRODUCT_PACKAGES += \
