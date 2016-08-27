@@ -72,6 +72,9 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
 BLUETOOTH_HCI_USE_MCT := true
 
+# Camera
+TARGET_NEEDS_TEXT_RELOCATIONS := true
+
 # Charger
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/mmi_lpm/lpm_mode
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
