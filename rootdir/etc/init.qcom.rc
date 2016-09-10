@@ -56,7 +56,8 @@ on init
     chown root qcom_diag /sys/kernel/dropbox/data
 
     # Symbols required for motorola blobs
-    export LD_SHIM_LIBS "/system/lib/liblog.so|libmoto.so /system/lib/libcrypto.so|libboringssl-compat.so /system/vendor/lib/libqc-opt.so|libshim_qcopt.so /system/bin/thermal-engine:libshims_thermal.so"
+    export LD_PRELOAD "libmoto.so:libshim_qcopt.so"
+    export LD_SHIM_LIBS "/system/bin/thermal-engine:libshims_thermal.so"
 
 on fs
     mount_all fstab.qcom
