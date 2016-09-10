@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2007-2016 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -109,14 +109,14 @@
 #define AID_READPROC      3009  /* Allow /proc read access */
 #define AID_WAKELOCK      3010  /* Allow system wakelock read/write access */
 
-/* The range 5000-5999 is also reserved for OEM, and must never be used here. */
-#define AID_OEM_RESERVED_2_START 5000
-#define AID_OEM_RESERVED_2_END   5999
-
 #define AID_SENSORS       3011 /* access to /dev/socket/sensor_ctl_socket & QCCI/QCSI */
 
 #define AID_RFS           3012  /* Remote Filesystem for peripheral processors */
 #define AID_RFS_SHARED    3013  /* Shared files for Remote Filesystem for peripheral processors  */
+
+/* The range 5000-5999 is also reserved for OEM, and must never be used here. */
+#define AID_OEM_RESERVED_2_START 5000
+#define AID_OEM_RESERVED_2_END   5999
 
 /* Motorola IDs */
 #define AID_MOT_ACCY      9000  /* access to accessory */
@@ -136,11 +136,8 @@
 #define AID_MOT_DBVC      9014  /* mot_dbvc - This group is used to access DataBlock feature related data */
 /* Motorola IDs */
 
-#define AID_RFS           3012  /* Remote Filesystem for peripheral processors */
-#define AID_RFS_SHARED    3013  /* Shared files for Remote Filesystem for peripheral processors  */
-
 #define AID_EVERYBODY     9997  /* shared between all apps in the same profile */
- 
+
 #define AID_MISC          9998  /* access to misc storage */
 #define AID_NOBODY        9999
 
