@@ -80,6 +80,9 @@ persist.data.qmi.adb_logmask=0
 # Scheduler
 sys.io.scheduler=bfq
 
+# Storage
+ro.sys.sdcardfs=true
+
 # Time Services
 persist.timed.enable=true
 
