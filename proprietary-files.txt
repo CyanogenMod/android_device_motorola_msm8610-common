@@ -3,7 +3,6 @@ bin/adsprpcd
 bin/ATFWD-daemon
 bin/batt_health
 bin/btnvtool
-bin/hardware_revisions.sh
 bin/hci_qcomm_init
 bin/irsc_util
 bin/mm-qcamera-daemon
