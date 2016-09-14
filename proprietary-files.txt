@@ -67,7 +67,6 @@ vendor/lib/liblbs_core.so
 vendor/lib/libllvm-qcom.so
 vendor/lib/libmm-hdcpmgr.so
 vendor/lib/libmmipl.so
-vendor/lib/libmmjpeg.so
 vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libmmQSM.so
 vendor/lib/libmmrtpdecoder.so
@@ -122,7 +121,6 @@ etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 etc/gps.conf
 etc/sap.conf
 lib/libmmcamera_interface.so
-lib/libmmjpeg_interface.so
 lib/libmm-qcamera.so
 lib/libspeakerbundle.so
 lib/soundfx/libmmieffectswrapper.so
@@ -134,13 +132,11 @@ vendor/lib/libaudcal.so
 vendor/lib/libaudioalsa.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
-vendor/lib/libmmcamera_faceproc.so
 vendor/lib/libmmcamera_hdr_lib.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_wavelet_lib.so
 vendor/lib/libmm-color-convertor.so
-vendor/lib/libmmjpeg.so
 vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libqc-opt.so
 vendor/lib/libqomx_jpegdec.so
@@ -163,3 +159,7 @@ vendor/lib/libssd.so
 vendor/lib/libwvdrm_L3.so
 vendor/lib/libwvm.so
 vendor/lib/mediadrm/libwvdrmengine.so
+
+# Taken from shamu
+vendor/lib/libmmjpeg.so
+vendor/lib/libmmcamera_faceproc.so
