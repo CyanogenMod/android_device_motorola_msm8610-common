@@ -130,6 +130,9 @@ for FILE in `egrep -v '(^#|^$)' ../msm8610-common/proprietary-files.txt`; do
   fi
 done
 
+echo
+echo "\$(call inherit-product, vendor/qcom/binaries/msm8974/graphics/graphics-vendor.mk)"
+
 (cat << EOF) > ../../../$OUTDIR/$DEVICE-vendor.mk
 # Copyright (C) $YEAR The CyanogenMod Project
 #
