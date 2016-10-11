@@ -59,6 +59,8 @@ mm.enable.smoothstreaming=true
 av.offload.enable=false
 ro.media.enc.aud.fileformat=amr
 ro.media.enc.aud.codec=amrnb
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
 
 # Qualcomm
 ro.qualcomm.cabl=0
