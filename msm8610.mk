@@ -102,6 +102,10 @@ PRODUCT_PACKAGES += \
     libshim_qcopt \
     Snap
 
+# DRM
+PRODUCT_PACKAGES += \
+    libshims_wvm
+
 # IPC router config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
