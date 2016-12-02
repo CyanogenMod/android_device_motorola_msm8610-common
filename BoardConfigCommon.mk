@@ -133,6 +133,9 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/
 # Init
 TARGET_UNIFIED_DEVICE := true
 
+# Avoid zygote fork failure due to unnamed socket opened by static liblog
+BOARD_LIBCUTILS_NO_STATIC_LIBLOG := true
+
 # Properties (reset them here, include more in device if needed)
 TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
 
