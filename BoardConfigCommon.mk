@@ -43,12 +43,12 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel
 BOARD_DTBTOOL_ARGS := -v2
-BOARD_CUSTOM_BOOTIMG_MK := $(COMMON_PATH)/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.bootdevice=msm_sdcc.1 vmalloc=400M
+LZMA_RAMDISK_TARGETS := recovery
 
 TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
 TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
@@ -105,7 +105,6 @@ TARGET_RIL_VARIANT := caf
 TARGET_RECOVERY_DENSITY := hdpi
 BOARD_HAS_NO_SELECT_BUTTON := true
 HAVE_SELINUX := true
-TARGET_NOT_USE_GZIP_RECOVERY_RAMDISK := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
